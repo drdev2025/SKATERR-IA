@@ -82,8 +82,7 @@ export const UI = ({ hidden, ...props }) => {
   return (
     <div className="fixed top-0 left-0 right-0 bottom-0 z-10 flex justify-between p-4 flex-col">
       <div className="self-start backdrop-blur-md bg-white bg-opacity-50 p-4 rounded-lg pointer-events-none">
-        <h1 className="font-black text-xl">$SKATERS</h1>
-        <p>SKATERS🛹</p>
+        <h1 className="font-black text-xl">Valentin XV</h1>        
       </div>
 
       <div className="fixed top-0 left-1/2 transform -translate-x-1/2 z-10 flex justify-center p-4">
