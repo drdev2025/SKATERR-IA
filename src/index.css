@@ -14,7 +14,7 @@
 
 body {
   margin: 0;
-  background-image: url('https://raw.githubusercontent.com/drdev2025/skater-ia-frontend/refs/heads/main/public/textures/skateboard-wallpaper-preview.jpg');
+  background-image: url('https://raw.githubusercontent.com/drdev2025/SKATERR-IA/refs/heads/main/public/textures/skateboard-wallpaper-preview.jpg');
   background-size: cover; /* Ensures the image covers the entire background */
   background-position: center; /* Centers the image */
   background-repeat: no-repeat; /* Prevents tiling */

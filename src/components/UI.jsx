@@ -17,20 +17,22 @@ export const UI = ({ hidden, ...props }) => {
     setIsLoading(true);
 
     try {
-      const response = await fetch('api/chat', {
-        method: 'POST',
+      const response = await fetch("/api/chat", {
+        method: "POST",
         headers: {
-          'Content-Type': 'application/json',
+          "Content-Type": "application/json",
         },
-        body: JSON.stringify({
-          messages: [{
-            role: "system",
-            content: "helpful and friendly AI assistant."
-          }, {
-            role: "user",
-            content: trimmedInput
-          }]
+        body: JSON.stringify({ message: input }),
+      })
+        .then((response) => response.json())
+        .then((data) => {
+          // Handle the response data
+          console.log("Success:", data)
+          // Update the chat display with the response
         })
+        .catch((error) => {
+          // Handle errors
+          console.error("Error:", error)        
       });
 
       
@@ -159,7 +161,7 @@ export const UI = ({ hidden, ...props }) => {
                   handleSendMessage();
                 }
               }}
-              placeholder="Speak to SKATER.."
+              placeholder="Speak to Valentin XV.."
               className="bg-[#333333] text-white px-4 py-2 rounded-md border border-[#666666] w-full max-w-[600px]"
             />
             <button
