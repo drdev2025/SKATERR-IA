@@ -1,4 +1,4 @@
-import React, { useRef, useState } from 'react';
+import React, { useRef, useState, useEffect } from 'react';
 
 export const UI = ({ hidden, ...props }) => {
   const input = useRef(null);
@@ -32,6 +32,8 @@ export const UI = ({ hidden, ...props }) => {
           }]
         })
       });
+
+      
 
       if (!response.ok) {
         throw new Error(`API request failed: ${response.status} ${response.statusText}`);
@@ -84,6 +86,12 @@ export const UI = ({ hidden, ...props }) => {
         <p>SKATERS🛹</p>
       </div>
 
+      <div className="fixed top-0 left-1/2 transform -translate-x-1/2 z-10 flex justify-center p-4">
+        <div className="backdrop-blur-md bg-white bg-opacity-50 p-4 rounded-lg pointer-events-auto text-center">
+          <h1 className="font-black text-xl cursor-pointer" onClick={() => navigator.clipboard.writeText('792NFoxwa77hcHFArNLPftVgPV7ADsRWeZG9QZY1pump')}>CA : 792NFoxwa77hcHFArNLPftVgPV7ADsRWeZG9QZY1pump</h1>   
+        </div>
+      </div>
+
       <div className="absolute top-4 right-4 flex gap-4">
         <button className="pointer-events-auto bg-gradient-to-r from-pink-500 to-orange-500 hover:from-pink-600 hover:to-orange-600 text-white p-2 rounded-full">
           <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor" className="w-6 h-6">
@@ -97,6 +105,13 @@ export const UI = ({ hidden, ...props }) => {
           <path d="M18.36 2H21l-7.56 8.63L22 22h-6.86l-5.12-6.9L5.09 22H2.36l8.06-9.2L2 2h6.86l4.66 6.29L18.36 2zm-1.21 17.95h2.05L8.18 4.05H6.13l11.02 15.9z"/>
           </svg>
         </button>
+
+        <button className="pointer-events-auto bg-black hover:bg-gray-800 text-white p-2 rounded-full">
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor" className="w-6 h-6">
+          <path d="M16.6 5.82s.51.5 0 0A4.278 4.278 0 0115.54 3h-3.09v12.4a2.592 2.592 0 01-2.59 2.5c-1.42 0-2.6-1.16-2.6-2.6c0-1.72 1.66-3.01 3.37-2.48V9.66c-3.45-.46-6.47 2.22-6.47 5.64c0 3.33 2.76 5.7 5.69 5.7c3.14 0 5.69-2.55 5.69-5.7V9.01a7.35 7.35 0 004.3 1.38V7.3s-1.88.09-3.24-1.48z"/>
+          </svg>
+        </button>
+
       </div>
 
       <div className="w-full flex flex-col items-end justify-center gap-4">
