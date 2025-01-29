@@ -13,62 +13,45 @@ export const UI = ({ hidden, ...props }) => {
   const handleSendMessage = async () => {
     const trimmedInput = userInput.trim();
     if (!trimmedInput) return;
-
+  
     setIsLoading(true);
-
+  
     try {
       const response = await fetch("/api/chat", {
         method: "POST",
         headers: {
           "Content-Type": "application/json",
         },
-        body: JSON.stringify({ message: input }),
-      })
-        .then((response) => response.json())
-        .then((data) => {
-          // Handle the response data
-          console.log("Success:", data)
-          // Update the chat display with the response
-        })
-        .catch((error) => {
-          // Handle errors
-          console.error("Error:", error)        
+        body: JSON.stringify({ message: trimmedInput }),
       });
-
-      
-
+  
       if (!response.ok) {
         throw new Error(`API request failed: ${response.status} ${response.statusText}`);
       }
-
+  
       const data = await response.json();
-
-      if (!data.content) {
-        throw new Error('Response missing required content field');
-      }
-
-      setChatMessages(prev => [...prev,
-        { role: 'user', content: trimmedInput },
-        { role: 'assistant', content: data.content }
+  
+      setChatMessages(prev => [
+        ...prev,
+        { role: "user", content: trimmedInput },
+        { role: "assistant", content: data.content }
       ]);
-
+  
       setUserInput("");
       scrollToBottom();
-      
+  
     } catch (error) {
       console.error("Chat API Error:", error);
-      const errorMessage = error instanceof Error 
-        ? error.message 
-        : "I apologize, but I encountered an error. Please try again.";
-      
-      setChatMessages(prev => [...prev,
-        { role: 'user', content: trimmedInput },
-        { role: 'assistant', content: errorMessage }
+      setChatMessages(prev => [
+        ...prev,
+        { role: "user", content: trimmedInput },
+        { role: "assistant", content: "Sorry, there was an error processing your message. Please try again." }
       ]);
     } finally {
       setIsLoading(false);
     }
   };
+  
 
   const scrollToBottom = () => {
     messagesEndRef.current?.scrollIntoView({ behavior: "smooth" });
@@ -99,7 +82,7 @@ export const UI = ({ hidden, ...props }) => {
           <path d="M7.75 2h8.5C19.55 2 22 4.45 22 7.75v8.5C22 19.55 19.55 22 16.25 22h-8.5C4.45 22 2 19.55 2 16.25v-8.5C2 4.45 4.45 2 7.75 2zm0-2C3.47 0 0 3.47 0 7.75v8.5C0 20.53 3.47 24 7.75 24h8.5C20.53 24 24 20.53 24 16.25v-8.5C24 3.47 20.53 0 16.25 0h-8.5z"/>
           <path d="M12 6.25a5.75 5.75 0 100 11.5 5.75 5.75 0 000-11.5zm0 9.5a3.75 3.75 0 110-7.5 3.75 3.75 0 010 7.5zM18.5 5.75a1.25 1.25 0 100 2.5 1.25 1.25 0 000-2.5z"/>
         </svg>
-  </button>
+        </button>
 
         <button className="pointer-events-auto bg-black hover:bg-gray-800 text-white p-2 rounded-full">
           <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor" className="w-6 h-6">
@@ -107,11 +90,11 @@ export const UI = ({ hidden, ...props }) => {
           </svg>
         </button>
 
-        <button className="pointer-events-auto bg-black hover:bg-gray-800 text-white p-2 rounded-full">
-          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor" className="w-6 h-6">
-          <path d="M16.6 5.82s.51.5 0 0A4.278 4.278 0 0115.54 3h-3.09v12.4a2.592 2.592 0 01-2.59 2.5c-1.42 0-2.6-1.16-2.6-2.6c0-1.72 1.66-3.01 3.37-2.48V9.66c-3.45-.46-6.47 2.22-6.47 5.64c0 3.33 2.76 5.7 5.69 5.7c3.14 0 5.69-2.55 5.69-5.7V9.01a7.35 7.35 0 004.3 1.38V7.3s-1.88.09-3.24-1.48z"/>
-          </svg>
+        <button className="pointer-events-auto bg-black hover:bg-gray-800 text-white p-2 rounded-full flex items-center justify-center">
+           <img src="https://i.imgur.com/gPJacwG.png" alt="Dexscreener Logo" className="w-6 h-6"/>
+           <span className="ml-2 text-sm font-semibold">Dexscreener</span>
         </button>
+
 
       </div>
 
