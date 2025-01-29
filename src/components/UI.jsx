@@ -25,7 +25,7 @@ export const UI = ({ hidden, ...props }) => {
         body: JSON.stringify({
           messages: [{
             role: "system",
-            content: "You are LUME, a helpful and friendly AI assistant."
+            content: "helpful and friendly AI assistant."
           }, {
             role: "user",
             content: trimmedInput
@@ -145,7 +145,7 @@ export const UI = ({ hidden, ...props }) => {
                   handleSendMessage();
                 }
               }}
-              placeholder="Speak to LUME..."
+              placeholder="Speak to SKATER.."
               className="bg-[#333333] text-white px-4 py-2 rounded-md border border-[#666666] w-full max-w-[600px]"
             />
             <button
